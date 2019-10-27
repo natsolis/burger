@@ -27,7 +27,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 // bring in the routes
-var routes = require('./controllers/burgers_controller.js');
+var routes = require("./controllers/burgers_controllers");
 
 // connect the routes
 app.use('/', routes);
@@ -37,7 +37,7 @@ app.use('/create', routes);
 
 
 // listen on port 3000
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 6000;
 app.listen(port);
 
 console.log(module.exports)
