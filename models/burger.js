@@ -1,28 +1,28 @@
-// Burger model
+var orm = require("../config/orm.js");
+var burger = {
+  selectAll: function(cb) {
+    orm.selectAll("burgers", function(res) {
+      cb(res);
+    });
+  },
 
-// Note: Since sequelize-cli lacks the option 
-// to designate default values for our attributes,
-// we still need to add in a line to give devoured
-// a default value of false.
-// We need to do the same on the associated migration file
-// that the cli created in tandem with this model.
+  insertOne: function(cols, vals, cb) {
+    orm.insertOne("burgers", cols, vals, function(res) {
+      cb(res);
+    });
+  },
 
-'use strict';
+  updateOne: function(objColVals, condition, cb) {
+    orm.updateOne("burgers", objColVals, condition, function(res) {
+      cb(res);
+    });
+  },
 
-
-module.exports = function(sequelize, DataTypes) {
-  var Burger = sequelize.define('Burger', {
-    burger_name: DataTypes.STRING,
-    devoured: {
-    	type: DataTypes.BOOLEAN,
-    	defaultValue: false // only line we needed to add.
-    }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        Burger.hasOne(models.Customer);
-      }
-    }
-  });
-  return Burger;
+  deleteOne: function(condition, cb) {
+    orm.deleteOne("burgers", condition, function(res) {
+      cb(res);
+    });
+  }
 };
+
+module.exports = burger;
